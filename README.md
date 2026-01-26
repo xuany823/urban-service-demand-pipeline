@@ -47,3 +47,31 @@ The dataset is large enough to simulate real-world production pipelines while al
 ---
 
 ## Planned Pipeline Architecture
+NYC Open Data API / CSV
+↓
+Python ETL
+↓
+MySQL
+↓
+SQL Transformations
+↓
+Analytics Tables & Visualizations
+
+---
+
+## Team Contributions
+All team members contribute equally and collaborate on:
+- Dataset research and validation  
+- Project design and planning  
+- ETL pipeline development  
+- Database schema design  
+- SQL transformations  
+- Documentation and visualization  
+
+---
+
+## Status
+- Team meetings in last two weeks: 2  
+- Roadblocks: None at this stage  
+
+---
