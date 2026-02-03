@@ -71,7 +71,7 @@ All team members contribute equally and collaborate on:
 ---
 
 ## Status
-- Team meetings in last two weeks: 2  
+- Team meetings in last two weeks: 3  
 - Roadblocks: None at this stage  
 
 ---
