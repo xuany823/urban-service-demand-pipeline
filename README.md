@@ -69,8 +69,25 @@ All team members contribute equally and collaborate on:
 - Documentation & Presentation
 
 ---
+## Method Used
+This project uses data engineering, database management, and API integration:
+- ETL (Extract, Transform, Load)
+- MySQL Queries and Functions
+- API Integration
 
+---
+## Technology Used
+- Programming and Scripting: Python, Jupyter Notebooks
+- Database Management: MySQL
+- Cloud Infrastructure: under deciding--- Microsoft Azure (database hosting)
+- Version Control & Collaboration: Git, GitHub
+- Development Tools: VS Code, MySQL Workbench
+- APIs: NYC 311 Service Requests APIs  
+
+
+
+---
 This project documentation was revised with guidance from OpenAI’s ChatGPT (2026).
 - Roadblocks: None at this stage  
 
----
+
