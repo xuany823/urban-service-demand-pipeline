@@ -1,4 +1,4 @@
-**Monitoring Urban Service Demand Through a Production-Ready NYC 311 Data Pipeline**
+# Monitoring Urban Service Demand Through a Production-Ready NYC 311 Data Pipeline #
 
 ## Project Overview
 This project builds a production-style data pipeline using the NYC 311 Service Requests dataset. The pipeline ingests continuously updated public service request data, loads it into a MySQL database, applies SQL-based transformations, and produces analytics-ready outputs. The goal is to demonstrate how real-world urban service data can be processed and monitored through a reproducible, version-controlled data engineering workflow.
