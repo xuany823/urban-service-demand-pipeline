@@ -38,11 +38,65 @@ https://data.cityofnewyork.us/Social-Services/311-Service-Requests/erm2-nwe9
 - Updated continuously with new requests added daily  
 
 **Sample Key Fields Include:**
-- Created and closed timestamps  
-- Complaint type and descriptor  
-- Responsible agency  
-- Request status (open/closed)  
-- Borough, ZIP code, latitude, and longitude  
+Incident / Request Identifiers
+  - Unique Key (primary identifier for each 311 request)
+
+Incident / Problem Timing
+  - Created Date (request creation timestamp)
+  - Closed Date (request closure timestamp)
+  - Resolution Action Updated Date
+  - Due Date
+
+Incident / Problem Status
+  - Request Status (e.g., Open, Closed)
+
+Request Submission Channel
+  - Open Data Channel Type (e.g., Phone, Online, Mobile App)
+
+Responding Agency
+  - Agency Code (abbreviation)
+  - Agency Name
+
+Incident / Problem Details
+  - Problem Type
+  - Problem Detail
+  - Additional Details (free-text description)
+  - Resolution Description
+
+Address Information
+  - Incident Address
+  - Street Name
+  - Cross Streets and Intersection Streets
+  - City, ZIP Code, Borough
+  - BBL (Borough–Block–Lot)
+  - Address Type, Location Type, Facility Type
+
+Neighborhood & Administrative Areas
+  - Landmark
+  - Community Board
+  - Council District
+  - Police Precinct
+
+Park Information (when applicable)
+  - Park Facility Name
+  - Park Borough
+
+Highway Information (when applicable)
+  - Bridge / Highway Name
+  - Highway Direction
+  - Road Ramp
+  - Highway Segment
+
+Taxi Information (when applicable)
+  - Vehicle Type
+  - Taxi Company Borough
+  - Taxi Pick-Up Location
+
+Geographic Coordinates
+  - X and Y State Plane Coordinates
+  - Latitude and Longitude
+  - Raw Location Field  
+
 
 The dataset is large enough to simulate real-world production pipelines while allowing filtering for recent time periods to keep processing manageable.
 
