@@ -179,3 +179,82 @@ CREATE INDEX idx_fact_status ON fact_service_request(status_id);
 CREATE INDEX idx_fact_agency ON fact_service_request(agency_id);
 CREATE INDEX idx_fact_problem ON fact_service_request(problem_id);
 CREATE INDEX idx_fact_location ON fact_service_request(location_id);
+
+
+-- ============================================================
+-- Schema Cleanup + Standard Audit Columns
+-- 1. Remove legacy etl_loaded_ts from fact table
+-- 2. Add standardized audit columns to all tables
+-- ============================================================
+
+USE nyc311_dw;
+
+-- ------------------------------------------------------------
+-- 1) Remove legacy ETL column from fact table
+-- ------------------------------------------------------------
+ALTER TABLE fact_service_request
+  DROP COLUMN etl_loaded_ts;
+
+-- ------------------------------------------------------------
+-- 2) Add standardized audit columns to ALL tables
+-- ------------------------------------------------------------
+
+ALTER TABLE dim_status
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE dim_channel
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE dim_agency
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE dim_problem
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE dim_address
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE dim_neighborhood
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE dim_park
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE dim_highway
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE dim_taxi
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE dim_geography
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE dim_location
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE fact_service_request
+  ADD COLUMN etl_load_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
