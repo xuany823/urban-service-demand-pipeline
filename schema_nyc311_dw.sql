@@ -180,6 +180,28 @@ CREATE INDEX idx_fact_agency ON fact_service_request(agency_id);
 CREATE INDEX idx_fact_problem ON fact_service_request(problem_id);
 CREATE INDEX idx_fact_location ON fact_service_request(location_id);
 
+-- 6) ETL Checkpoint table to track last processed record
+CREATE TABLE IF NOT EXISTS etl_checkpoint (
+  checkpoint_id INT AUTO_INCREMENT PRIMARY KEY,
+  last_extracted_timestamp DATETIME NULL,
+  last_run_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  records_loaded INT NOT NULL DEFAULT 0,
+  etl_status VARCHAR(50) DEFAULT 'completed',
+  error_message TEXT NULL
+) ENGINE=InnoDB;
+
+-- 7) ETL Log table to track ETL runs and errors in more detail
+CREATE TABLE etl_run_log (
+  run_id INT AUTO_INCREMENT PRIMARY KEY,
+  start_time TIMESTAMP,
+  end_time TIMESTAMP,
+  status VARCHAR(50),
+  records_extracted INT,
+  records_loaded INT,
+  errors_count INT,
+  error_summary TEXT
+); ENGINE=InnoDB;
+
 
 -- ============================================================
 -- Schema Cleanup + Standard Audit Columns
