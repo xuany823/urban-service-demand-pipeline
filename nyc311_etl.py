@@ -22,10 +22,10 @@ BATCH_SIZE = 1000  # How many records to fetch per API call
 MAX_RECORDS = 1000  # Maximum records to load (10,000 = ~2 weeks of data)
 
 # Database Settings
-DB_HOST = "nyc311.mysql.database.azure.com"
+DB_HOST = "adsnyc311.mysql.database.azure.com"
 DB_PORT = 3306
 DB_DATABASE = "nyc311_dw"
-DB_USER = "michaelha"
+DB_USER = "xuanwang"
 DB_PASSWORD = "team1@USD"
 DB_SSL = True   # Azure MySQL requires SSL
 
@@ -149,7 +149,8 @@ try:
         params = {
             '$limit': BATCH_SIZE,
             '$offset': offset,
-            '$order': 'created_date ASC'
+            '$order': 'created_date ASC',
+            '$where': "created_date >= '2026-02-01T00:00:00.000'"
         }
 
         # Add filter if we have a checkpoint (for incremental loads after first run)
