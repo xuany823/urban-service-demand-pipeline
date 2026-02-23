@@ -1,8 +1,8 @@
 """
-NYC 311 ETL - Simple Procedural Version (No Classes/Functions)
-================================================================
-A straightforward, script-based ETL that's easy to understand and modify.
-No complex OOP - just straightforward code from top to bottom.
+NYC 311 ETL Script  
+==============================================================================
+This script performs an ETL (Extract, Transform, Load) process to load NYC 311 
+service request data from the public API into a MySQL database.
 """
 
 import requests
@@ -27,14 +27,14 @@ DB_PORT = 3306
 DB_DATABASE = "nyc311_dw"
 DB_USER = "xuanwang"
 DB_PASSWORD = "team1@USD"
-DB_SSL = True   # Azure MySQL requires SSL
+DB_SSL = True   # Required for Azure MySQL; set to False for local MySQL
 
 # ETL Settings
 # Checkpoint is now stored in the etl_checkpoint table in the database
 DB_BATCH_SIZE = 500  # How many records to insert at once
 
 # Logging Settings
-LOG_FILE = "etl.log" # change it to github link if you want to store it in github repo instead of local file system
+LOG_FILE = "etl.log" # detailed run logs; high-level run summaries are stored in the etl_run_log table
 LOG_LEVEL = logging.INFO
 
 # =============================================================================
@@ -66,7 +66,7 @@ last_timestamp = None
 # CONNECT TO DATABASE
 # =============================================================================
 
-logging.info("Connecting to Azure MySQL database...")
+logging.info("Connecting to MySQL database...")
 db_conn = mysql.connector.connect(
     host=DB_HOST,
     port=DB_PORT,
@@ -79,7 +79,7 @@ db_conn = mysql.connector.connect(
     connection_timeout=60
 )
 cursor = db_conn.cursor()
-logging.info("Azure MySQL database connected")
+logging.info("MySQL database connected")
 
 # Load checkpoint from database
 try:
@@ -103,7 +103,7 @@ except Exception as e:
 etl_run_id = None
 try:
     cursor.execute("""
-        INSERT INTO etl_run_log (status) VALUES ('running')
+        INSERT INTO etl_run_log (start_time, status) VALUES (NOW(), 'running')
     """)
     db_conn.commit()
     etl_run_id = cursor.lastrowid
@@ -455,7 +455,7 @@ finally:
             cursor.execute("""
                 UPDATE etl_run_log
                 SET end_time = NOW(),
-                    status = 'completed',
+                    status = CASE WHEN status = 'running' THEN 'completed' ELSE status END,
                     records_extracted = %s,
                     records_loaded = %s,
                     errors_count = %s
