@@ -142,7 +142,6 @@ This project uses data engineering, database management, and API integration:
 
 
 ---
-This project documentation was revised with guidance from OpenAI’s ChatGPT (2026).
-- Roadblocks: None at this stage  
+*Note on AI assistance: AI tools were used to support drafting and code scaffolding during this project. During the preparation of this work, 
 
 
